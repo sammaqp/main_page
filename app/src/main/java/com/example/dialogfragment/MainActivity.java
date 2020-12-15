@@ -17,10 +17,14 @@ import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,15 +40,23 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvText;
     ImageButton btCamera;
     ImageButton imageview;
+    SearchView searchView;
 
     ImageButton b1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tvText = findViewById(R.id.tvText);
         btnSpeak = findViewById(R.id.btnSpeak);
         btCamera = (ImageButton)findViewById(R.id.bt_camera);
+
+        searchView = findViewById(R.id.search);
+        //String love = "Busqueda...";
+
+
+
 
 
         btnSpeak.setOnClickListener(new View.OnClickListener(){
@@ -116,8 +128,10 @@ public class MainActivity extends AppCompatActivity {
             case RESULT_SPEECH:
                 if (resultCode == RESULT_OK && data != null) {
                     ArrayList<String> text = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    tvText.setText(text.get(0));
-
+                    SpannableString content = new SpannableString(text.get(0));
+                    content.setSpan(new UnderlineSpan(), 0, text.get(0).length(), 0);
+                    tvText.setText(content);
+                    searchView.setQuery(content, true);
                 }
                 break;
         }
