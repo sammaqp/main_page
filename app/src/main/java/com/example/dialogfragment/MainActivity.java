@@ -1,5 +1,6 @@
 package com.example.dialogfragment;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -28,6 +29,8 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,8 +44,10 @@ public class MainActivity extends AppCompatActivity {
     ImageButton btCamera;
     ImageButton imageview;
     SearchView searchView;
-
     ImageButton b1;
+
+    final private int REQUEST_CODE = 100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -75,23 +80,27 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        if (ContextCompat.checkSelfPermission(MainActivity.this,
-                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(MainActivity.this,new String[]{
-                    Manifest.permission.CAMERA
-            },100);
-        }
 
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,
+                    new String[]{
+                            Manifest.permission.CAMERA
+                    },REQUEST_CODE);
+        }else{
+            // Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            //startActivityForResult(cameraIntent, REQUEST_CODE);
+        }
         btCamera.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v){
                 try {
-                    //Intent intent = new Intent(MainActivity.this, camera.class);
+                    Toast.makeText(MainActivity.this,"Camara",Toast.LENGTH_SHORT).show();
+                    // Intent intent = new Intent(MainActivity.this, camera.class);
                     Intent intent = new Intent();
+                    // Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                   // intent.putExtra("android.intent.extras.CAMERA_FACING", 1);
-                    //intent.putExtra("android.intent.extra.USE_BACK_CAMERA", true);
-                    startActivityForResult(intent,100);
+                    startActivityForResult(intent,REQUEST_CODE);
+                    //startActivity(intent);
                 }catch (Exception e)
                 {
                     e.printStackTrace();
@@ -103,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         imageview.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v){
+                Toast.makeText(MainActivity.this,"Abriendo...",Toast.LENGTH_SHORT).show();
                 FragmentManager fragmentManager2 = getSupportFragmentManager();
                 dialogFragImage mdf2 = new dialogFragImage();
                 mdf2.show(fragmentManager2,"fragment_image_view");
@@ -113,12 +123,14 @@ public class MainActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v){
+                Toast.makeText(MainActivity.this,"Abriendo...",Toast.LENGTH_SHORT).show();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 myDialogFrag  mdf = new myDialogFrag();
                 mdf.show(fragmentManager,"fragment_edit_name");
             }
         });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){

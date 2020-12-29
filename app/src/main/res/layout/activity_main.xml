@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/paper22"
+    android:background="@drawable/paper2222"
+    android:text='Kronos'
     tools:context=".MainActivity">
 
 
@@ -18,6 +19,7 @@
         android:gravity="center"
         android:text="Clase..."
         android:textSize="25sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,24 +27,23 @@
 
     <ImageButton
         android:id="@+id/btnSpeak"
-        android:layout_width="50dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="312dp"
-        android:layout_marginTop="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="13dp"
         android:layout_marginEnd="18dp"
         android:background="@drawable/ic_micro"
+        app:layout_constraintBottom_toBottomOf="@+id/search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.774"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/search"
+        app:layout_constraintTop_toTopOf="@+id/search" />
 
     <ImageButton
         android:id="@+id/button"
-        android:layout_width="60dp"
-        android:layout_height="55dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="148dp"
-        android:background="@drawable/ic_dark_music"
+        android:layout_marginTop="164dp"
+        android:background="@drawable/ic_note"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvText" />
 
@@ -50,10 +51,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
         android:text="audio1.mp3 12/12/2020 4:45 pm"
         android:textSize="17dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="@+id/button" />
 
@@ -61,21 +62,21 @@
         android:id="@+id/bt_camera"
         android:layout_width="85dp"
         android:layout_height="85dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="76dp"
+        android:background="@drawable/ic_camera24"
         android:scaleType="centerCrop"
-        android:background="@drawable/ic_camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/image_foto"
-        android:layout_width="60dp"
-        android:layout_height="55dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/ic_image"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/ic_baseline_image_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
@@ -83,18 +84,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="20dp"
         android:text="fotografia.jpg 13/12/2020 4:45 pm"
         android:textSize="17dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/image_foto"
-        app:layout_constraintStart_toEndOf="@+id/image_foto" />
+        app:layout_constraintStart_toEndOf="@+id/image_foto"
+        app:layout_constraintTop_toTopOf="@+id/image_foto" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="88dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="48dp"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="40dp"
         android:background="@drawable/ic_mic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,15 +104,38 @@
 
     <SearchView
         android:id="@+id/search"
-        android:layout_width="315dp"
-        android:layout_height="43dp"
+        android:layout_width="289dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="36dp"
+        android:background="#75FFFFFF"
+        android:hapticFeedbackEnabled="true"
         android:hint="Busqueda..."
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnSpeak"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Camara"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/bt_camera"
+        app:layout_constraintStart_toStartOf="@+id/bt_camera"
+        app:layout_constraintTop_toBottomOf="@+id/bt_camera" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Nota de Voz"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
